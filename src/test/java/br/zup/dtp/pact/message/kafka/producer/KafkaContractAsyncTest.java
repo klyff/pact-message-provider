@@ -17,8 +17,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @Slf4j
 @Provider("ClientCreationMessageProvider")
-//@Consumer("ClientCreationMessageConsummer")
-//@PactFolder("src/test/resources/pacts")
 @PactBroker(host = "localhost", port = "80")
 public class KafkaContractAsyncTest {
 

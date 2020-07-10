@@ -4,10 +4,9 @@ package br.zup.dtp.pact.message.kafka.producer;
 import au.com.dius.pact.core.model.Interaction;
 import au.com.dius.pact.core.model.Pact;
 import au.com.dius.pact.provider.PactVerifyProvider;
-import au.com.dius.pact.provider.junit.Consumer;
 import au.com.dius.pact.provider.junit.Provider;
 import au.com.dius.pact.provider.junit.State;
-import au.com.dius.pact.provider.junit.loader.PactFolder;
+import au.com.dius.pact.provider.junit.loader.PactBroker;
 import au.com.dius.pact.provider.junit5.AmpqTestTarget;
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider;
@@ -18,8 +17,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @Slf4j
 @Provider("ClientCreationMessageProvider")
-@Consumer("ClientCreationMessageConsummer")
-@PactFolder("src/test/resources/pacts")
+//@Consumer("ClientCreationMessageConsummer")
+//@PactFolder("src/test/resources/pacts")
+@PactBroker(host = "localhost", port = "80")
 public class KafkaContractAsyncTest {
 
 
@@ -48,6 +48,12 @@ public class KafkaContractAsyncTest {
 
 
    @PactVerifyProvider("Client Created Message")
+   public String verifyMessageForClientCreation() {
+      final String body = "{\"name\":\"KLYFF HARLLEY TOLEDO\",\"id\":\"1001\",\"type\":\"user\"}".trim();
+      return body;
+   }
+
+   @PactVerifyProvider("ClientProviderState CallBack Json")
    public String verifyMessageForClientCreationJson() {
       final String body = "{\"name\":\"KLYFF HARLLEY TOLEDO\",\"id\":\"1001\",\"type\":\"user\"}".trim();
       return body;

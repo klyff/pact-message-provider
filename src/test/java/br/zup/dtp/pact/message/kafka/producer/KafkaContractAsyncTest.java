@@ -25,14 +25,14 @@ public class KafkaContractAsyncTest {
 
    @TestTemplate
    @ExtendWith(PactVerificationInvocationContextProvider.class)
-   void testTemplate(Pact pact, Interaction interaction, PactVerificationContext context) {
+   void testTemplateInteraction(Pact pact, Interaction interaction, PactVerificationContext context) {
       log.info("TestTemplate called: " + pact.getProvider().getName() + ", " + interaction);
       context.verifyInteraction();
    }
 
    @BeforeEach
    void before(PactVerificationContext context) {
-//      context.setTarget(new KafkaTestTarget());
+      System.setProperty("pact.verifier.publishResults", "true");
       context.setTarget(new AmpqTestTarget());
    }
 

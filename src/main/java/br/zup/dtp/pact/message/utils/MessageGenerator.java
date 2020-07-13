@@ -22,12 +22,9 @@ public class MessageGenerator {
 
    public static List<Client> names(int numberOfMessages){
       Faker faker = new Faker();
-      ID_START++;
-
       List<Client> clients = new ArrayList<>();
-      String name = faker.name().fullName();
       for(int i = 0; i <= numberOfMessages; i++) {
-         clients.add(Client.builder().id(ID_START).name(name).type("user").build());
+         clients.add(Client.builder().id(ID_START++).name(faker.name().fullName()).type("user").build());
       }
 
       return clients;

@@ -42,6 +42,7 @@ public class MessageClientKafkaProducer {
 
          @Override
          public void onFailure(Throwable ex) {
+
             log.error("Unable to send create Client Message = [" + client + "] due to : " + ex.getMessage(), ex);
          }
       });

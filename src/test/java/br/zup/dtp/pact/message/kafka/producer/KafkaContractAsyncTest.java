@@ -10,6 +10,11 @@ import au.com.dius.pact.provider.junit.loader.PactBroker;
 import au.com.dius.pact.provider.junit5.AmpqTestTarget;
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider;
+import br.zup.dtp.pact.message.model.Client;
+import br.zup.dtp.pact.message.utils.MessageGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
@@ -20,6 +25,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @PactBroker(host = "localhost", port = "80")
 public class KafkaContractAsyncTest {
 
+
+   static ObjectMapper mapper = new ObjectMapper();
+   static {
+      mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
+      mapper.configure(DeserializationFeature.FAIL_ON_NULL_CREATOR_PROPERTIES, false);
+      mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+   }
 
    @TestTemplate
    @ExtendWith(PactVerificationInvocationContextProvider.class)
@@ -47,20 +59,46 @@ public class KafkaContractAsyncTest {
 
    @PactVerifyProvider("Client Created Message")
    public String verifyMessageForClientCreation() {
-      final String body = "{\"name\":\"KLYFF HARLLEY TOLEDO\",\"id\":\"1001\",\"type\":\"user\"}".trim();
-      return body;
+
+      try {
+         Client client = MessageGenerator.generateCLients(1).get(1);
+
+         String body = mapper.writeValueAsString(client);
+
+         return body;
+      } catch (JsonProcessingException e) {
+         e.printStackTrace();
+         return null;
+      }
    }
 
    @PactVerifyProvider("ClientProviderState CallBack Json")
    public String verifyMessageForClientCreationJson() {
-      final String body = "{\"name\":\"KLYFF HARLLEY TOLEDO\",\"id\":\"1001\",\"type\":\"user\"}".trim();
-      return body;
+      try {
+         Client client = MessageGenerator.generateCLients(1).get(1);
+
+         String body = mapper.writeValueAsString(client);
+
+         return body;
+      } catch (JsonProcessingException e) {
+         e.printStackTrace();
+         return null;
+      }
+
    }
 
    @PactVerifyProvider("ClientProviderState CallBack Map")
    public String verifyMessageForClientCreationMap() {
-      final String body = "{\"name\":\"KLYFF HARLLEY TOLEDO\",\"id\":\"1001\",\"type\":\"user\"}".trim();
-      return body;
+      try {
+         Client client = MessageGenerator.generateCLients(5).get(3);
+
+         String body = mapper.writeValueAsString(client);
+
+         return body;
+      } catch (JsonProcessingException e) {
+         e.printStackTrace();
+         return null;
+      }
    }
 
 }

@@ -13,9 +13,9 @@
         "contentType": "application/json"
       },
       "contents": {
-        "name": "KLYFF HARLLEY TOLEDO",
-        "id": "1001",
-        "type": "user"
+        "name": "string",
+        "id": 100,
+        "type": "string"
       },
       "providerStates": [
         {
@@ -33,24 +33,78 @@
             ],
             "combine": "AND"
           }
+        },
+        "body": {
+          "$.name": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          },
+          "$.id": {
+            "matchers": [
+              {
+                "match": "integer"
+              }
+            ],
+            "combine": "AND"
+          },
+          "$.type": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          }
         }
       }
     },
     {
-      "description": "ClientProviderState CallBack Map",
+      "description": "ClientProviderState CallBack Json",
       "metaData": {
         "contentType": "application/json"
       },
       "contents": {
-        "name": "KLYFF HARLLEY TOLEDO",
-        "id": "1001",
-        "type": "user"
+        "name": "string",
+        "id": 100,
+        "type": "string"
       },
       "providerStates": [
         {
           "name": "ClientProviderState"
         }
-      ]
+      ],
+      "matchingRules": {
+        "body": {
+          "$.name": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          },
+          "$.id": {
+            "matchers": [
+              {
+                "match": "integer"
+              }
+            ],
+            "combine": "AND"
+          },
+          "$.type": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ],
+            "combine": "AND"
+          }
+        }
+      }
     }
   ],
   "metadata": {
@@ -58,7 +112,7 @@
       "version": "3.0.0"
     },
     "pact-jvm": {
-      "version": "4.0.10"
+      "version": "4.0.6"
     }
   }
 }

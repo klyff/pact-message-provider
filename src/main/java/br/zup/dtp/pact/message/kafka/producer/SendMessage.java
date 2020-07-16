@@ -17,7 +17,7 @@ public class SendMessage {
 
    @PostConstruct
    public void sendMessage() {
-      List<Client> clients = MessageGenerator.names(5);
+      List<Client> clients = MessageGenerator.generateCLients(5);
 
       clients.stream().forEach(messageClientKafkaProducer::sendMessageClientCreation);
    }

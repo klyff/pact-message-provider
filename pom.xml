@@ -151,34 +151,17 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <release>13</release>
-                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>--enable-preview</argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-<!--                    <argLine>&#45;&#45;enable-preview</argLine>-->
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>au.com.dius</groupId>
-                <artifactId>pact-jvm-provider-maven</artifactId>
-                <version>4.0.6</version>
-                <configuration>
-                    <pactBrokerUrl>http://localhost</pactBrokerUrl>
-                    <pactDirectory>target/pacts</pactDirectory>
-                    <trimSnapshot>true</trimSnapshot>
-                </configuration>
             </plugin>
         </plugins>
     </build>

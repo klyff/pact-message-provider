@@ -14,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageGenerator {
 
    int numberOfMessages;
-   static int ID_START = 100;
+   static int ID_START = 99;
 
    private MessageGenerator(int num) {
       this.numberOfMessages = num;
    }
 
-   public static List<Client> names(int numberOfMessages){
+   public static List<Client> generateCLients(int numberOfMessages){
       Faker faker = new Faker();
       List<Client> clients = new ArrayList<>();
       for(int i = 0; i <= numberOfMessages; i++) {
